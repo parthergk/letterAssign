@@ -2,9 +2,27 @@ const express = require("express");
 const app = express();
 const port = 3000 || process.env.PORT;
 
-app.post('/auth/google', (req, res)=>{
+const admin = require("firebase-admin");
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+})
+
+const verifyFirebaseToken = async(req, res, next)=>{
+    const token = req.body.token;
+    try {
+        const verifyedToken = await admin.auth().verifyIdToken(token);
+        req.user = verifyedToken;
+        next(); 
+    } catch (error) {
+        res.status(401).json({ error: "Unauthorized" });
+    }
+}
+
+app.post('/auth/google', (req, verifyFirebaseToken, res)=>{
     const {token} = req.body();
-    
+
 })
 
 app.listen(port, ()=>{

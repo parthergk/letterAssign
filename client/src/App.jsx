@@ -1,5 +1,5 @@
 import './App.css'
-import {GoogleAuthProvider, signInWithPopup, getAuth} from "@firebase/auth";
+import {GoogleAuthProvider, signInWithPopup, getAuth, getIdToken} from "@firebase/auth";
 import app from './firebaseConfig';
 
 function App() {
@@ -8,8 +8,14 @@ function App() {
 
   const loginWithGoogle = async ()=>{
     const result = await signInWithPopup(auth, provider);
-    console.log("result of auth", result);
-    
+    const token = await getIdToken(result.user);
+    await fetch('http://localhost:3000/auth/google', {
+      method: "POST",
+      headers: {
+        "Conetent-Type": "application/json"
+      },
+      body: JSON.stringify({token})
+    })    
   }
 
   return (
