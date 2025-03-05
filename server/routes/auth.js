@@ -7,11 +7,15 @@ const router = express.Router();
 
 router.post("/google", verifyFirebaseToken, async (req, res) => {
     const { uid, email, name } = req.user;
+    const {googleAccessToken} = req.body; 
 
     try {
         let user = await User.findOne({ uid });
         if (!user) {
-            user = new User({ uid, email, name });
+            user = new User({ uid, email, name, googleAccessToken });
+            await user.save();
+        } else {
+            user.googleAccessToken = googleAccessToken;
             await user.save();
         }
 
