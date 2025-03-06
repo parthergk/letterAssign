@@ -7,7 +7,7 @@ const LetterList = ({ letters }) => {
   return (
     <div className="grid gap-4">
       {letters.map((letter) => {
-        const isDriveLetter = letter.id && letter.webViewLink; // Check if it's a Google Drive letter
+        const isDriveLetter = letter.id && letter.webViewLink;
 
         return (
           <div

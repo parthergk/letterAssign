@@ -25,7 +25,7 @@ const Login = () => {
     const googleAccessToken = credential.accessToken;
 
     try {
-      const response = await fetch("http://localhost:3000/auth/google", {
+      const response = await fetch("https://letter-assign-8tao.vercel.app/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

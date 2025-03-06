@@ -23,7 +23,7 @@ const Editor = () => {
     }
     
     try {
-      const response = await fetch("http://localhost:3000/draft/letter", {
+      const response = await fetch("https://letter-assign-8tao.vercel.app/draft/letter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const Editor = () => {
     }
     
     try {
-      const response = await fetch("http://localhost:3000/letter/upload", {
+      const response = await fetch("https://letter-assign-8tao.vercel.app/letter/upload", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

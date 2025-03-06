@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   const getLetterFromDrive = async () => {
     try {
-      const getResponse = await fetch("http://localhost:3000/letter", {
+      const getResponse = await fetch("https://letter-assign-8tao.vercel.app/letter", {
         method: "GET",
         credentials: "include",
       });
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const getLetterFromDb = async () => {
     try {
-      const getResponse = await fetch("http://localhost:3000/draft/letter", {
+      const getResponse = await fetch("https://letter-assign-8tao.vercel.app/draft/letter", {
         method: "GET",
         credentials: "include",
       });
