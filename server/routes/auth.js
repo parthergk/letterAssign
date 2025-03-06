@@ -23,8 +23,8 @@ router.post("/google", verifyFirebaseToken, async (req, res) => {
 
         res.cookie("token", jwt_token, {
             httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 

@@ -13,7 +13,7 @@ const db_uri = process.env.DB_URI;
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://letter-assign.vercel.app",
     credentials: true,
   })
 );
