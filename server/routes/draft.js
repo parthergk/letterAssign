@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const verifyToken = require("../middleware/verifyToken");
 const Draft = require("../db/model/draft");
 

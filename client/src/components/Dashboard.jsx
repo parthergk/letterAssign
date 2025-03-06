@@ -7,24 +7,37 @@ const Dashboard = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [draftLetters, setDraftLetters] = useState([]);
   const [driveLetters, setDriveLetters] = useState([]);
+  const [error, setError] = useState("");
 
-  const getLetterFromDrive = async ()=>{
-    const getResponse = await fetch("http://localhost:3000/letter", {
-      method: "GET",
-      credentials: "include",
-    });
-    const result = await getResponse.json();
-    setDriveLetters(result);
-  }
+  const getLetterFromDrive = async () => {
+    try {
+      const getResponse = await fetch("http://localhost:3000/letter", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (!getResponse.ok) throw new Error("Failed to fetch drive letters.");
+      const result = await getResponse.json();
+      setDriveLetters(result);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-  const getLetterFromDb = async ()=>{
-    const getResponse = await fetch("http://localhost:3000/draft/letter", {
-      method: "GET",
-      credentials: "include",
-    });
-    const result = await getResponse.json();    
-    setDraftLetters(result);
-  }
+  const getLetterFromDb = async () => {
+    try {
+      const getResponse = await fetch("http://localhost:3000/draft/letter", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (!getResponse.ok) throw new Error("Failed to fetch draft letters.");
+      const result = await getResponse.json();
+      console.log("db letter", result);
+      
+      setDraftLetters(result);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   useEffect(() => {
     getLetterFromDrive();
@@ -34,6 +47,8 @@ const Dashboard = () => {
   return (
     <div className="bg-neutral-950 rounded-md flex flex-col items-center py-10 px-6 w-full">
       <h1 className="text-5xl font-semibold text-white">Create and View Letters</h1>
+
+      {error && <p className="text-red-500 mt-4">{error}</p>}
 
       <div className="flex w-full max-w-2xl justify-center items-center gap-4 mt-5">
         <Link to="/editor">

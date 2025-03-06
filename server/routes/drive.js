@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.post("/upload", verifyToken, async (req, res) => {
   try {
-    const { letterContent } = req.body;
+    const  letterContent  = req.body;
+    console.log("letter content", letterContent);
+    
     const userId = req.userID;
 
     const user = await User.findOne({ uid: userId });
