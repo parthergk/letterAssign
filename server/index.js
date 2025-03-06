@@ -8,7 +8,7 @@ const mongoose = require("mongoose")
 require("dotenv").config();
 
 const app = express();
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 const db_uri = process.env.DB_URI;
 
 const allowedOrigins = [
