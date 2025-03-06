@@ -12,15 +12,18 @@ const port = process.env.PORT || 3000;
 const db_uri = process.env.DB_URI;
 
 const allowedOrigins = [
-  "https://letter-assign.vercel.app", 
+  "https://letter-assign.vercel.app",
+  "https://letter-assign-8tao.vercel.app",
   "http://localhost:5173"
 ];
+
 app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
