@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const verifyToken = require("../middleware/verifyToken");
 const Draft = require("../db/model/draft");
 
@@ -21,10 +22,13 @@ router.post("/letter", verifyToken, async (req, res) => {
 
 router.get("/letter", verifyToken, async (req, res) => {
   const userId = req.userID;
+  
   try {
-    const drafts = await Draft.find({ userId });
+    const drafts = await Draft.find({ userId });    
     res.json(drafts);
   } catch (error) {
+    console.log("error during geting the draft letters", error);
+    
     res.status(500).json({ error: "Failed to fetch drafts" });
   }
 });
