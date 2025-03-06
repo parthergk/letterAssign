@@ -4,7 +4,7 @@ const Draft = require("../db/model/draft");
 
 const router = express.Router();
 
-router.post("/", verifyToken, async (req, res) => {
+router.post("/letter", verifyToken, async (req, res) => {
   const { title, content } = req.body;
   const userId = req.userID;
 
@@ -19,7 +19,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 
-router.get("/", verifyToken, async (req, res) => {
+router.get("/letter", verifyToken, async (req, res) => {
   const userId = req.userID;
   try {
     const drafts = await Draft.find({ userId });
@@ -29,7 +29,7 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/letter/:id", verifyToken, async (req, res) => {
   const draftId = req.params.id;
   const { title, content } = req.body;
   const userId = req.userID;

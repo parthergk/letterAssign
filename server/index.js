@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const auth = require("./routes/auth");
-const letter = require('./routes/letter');
+const draft = require('./routes/draft');
 const drive = require('./routes/drive');
 const mongoose = require("mongoose")
 require("dotenv").config();
@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/auth', auth);
-app.use('/letter', letter);
-app.use('/upload', drive);
+app.use('/draft', draft);
+app.use('/letter', drive);
 
 
 main()

@@ -37,7 +37,7 @@ function App() {
       const result = await response.json();
       console.log(result.message);
       const letterContent = {
-        title: "My First Letter",
+        title: "My Letter",
         content: "Dear John,\n\nI hope this letter finds you well. I wanted to express my gratitude for your support...\n\nBest regards,\nJane Doe"
       };
       
@@ -51,6 +51,13 @@ function App() {
       });
       
       console.log("Upload response:", await uploadResponse.json());
+
+      const getResponse = await fetch("http://localhost:3000/upload", {
+        method: "GET",
+        credentials: "include",
+      });
+      
+      console.log("Upload response:", await getResponse.json());
       
     } catch (error) {
       console.error("Error during login:", error);
