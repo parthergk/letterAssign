@@ -41,23 +41,6 @@ const Login = () => {
       const result = await response.json();
       console.log(result.message);
       navigate('/dashboard')
-      
-      const letterContent = {
-        title: "My Letter",
-        content:
-        "Dear John,\n\nI hope this letter finds you well. I wanted to express my gratitude for your support...\n\nBest regards,\nJane Doe",
-      };
-      
-      const uploadResponse = await fetch("http://localhost:3000/upload", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ letterContent }),
-        credentials: "include",
-      });
-      
-      console.log("Upload response:", await uploadResponse.json());
     } catch (error) {
       console.error("Error during login:", error);
       setError(error)
